@@ -1,79 +1,105 @@
 package org.wit.ansibin.console.controllers
 
+import mu.KotlinLogging
+import org.wit.ansibin.console.models.RecipeJSONStore
+import org.wit.ansibin.console.models.RecipeModel
+import org.wit.ansibin.console.views.RecipeView
 
-    import org.wit.ansibin.console.models.AnSibinLocation //need this to access the class
-    import org.wit.ansibin.console.models.Recommended
-    import org.wit.ansibin.console.models.Dates
-    import java.util.*
+class AnSibinController {
 
+    // val recipes = PlacemarkMemStore()
+    val recipes = RecipeJSONStore()
+    val recipeView = RecipeView()
+    val logger = KotlinLogging.logger {}
 
-    class AnSibinController {
-//val location: String? = "An Síbín, Lisnagaul, Bansha, Co.Tipperary, Eircode: E34 Y656" //moved into its own class
-
-
-        val ansibinlocation = AnSibinLocation() // need this to access the methods or variables in side the class
-        val recommended = Recommended()
-        val dates = Dates()
-        fun menu() {
-            var select: Int
-
-            do {
-                select = org.wit.ansibin.console.main.ansibinView.menu()
-                when (select) {
-
-                    1 -> availableDates()
-                    2 -> recipes()
-                    3 -> located()
-                    4 -> recommended()
-                    -1 -> println("Exiting App")
-                    else -> println("Invalid Option")
-                }
-                println()
-            } while (select != -1)
-            println("Shutting down app")
-        }
-
-
-        fun availableDates() {
-
-            dates.returnDates()
-            //dummydata()
-
-        }
-
-        fun recipes() {
-
-
-        }
-
-        fun located() {
-
-            println(ansibinlocation.location)
-            println()
-            println(ansibinlocation.location())
-        }
-
-        fun recommended() {
-            var input: String = ""
-
-            while (input != "q") {
-
-
-                var protein: String?
-
-                print("Enter a choice of protein to see our recommended recipes:  ")
-
-                protein = readLine()!!.toLowerCase()
-
-                recommended.recommended(protein)
-
-                print("Press any key to search another protein recipe or 'q' to quit: ")
-                input = readLine()!!.toLowerCase()
-
-
-            }
-
-
-        }
-
+    init {
+        logger.info { "Preparing to Launch An-Sibin App" }
+        logger.info { "Launch Successful" }
+        println("Placemark Kotlin App Version 4.0")
     }
+
+    fun start() {
+        var input: Int
+
+        do {
+            input = menu()
+            when (input) {
+                1 -> add()
+                2 -> update()
+                3 -> list()
+                4 -> search()
+                5 -> delete()
+                -99 -> dummyData()
+                -1 -> println("Exiting App")
+                else -> println("Invalid Option")
+            }
+            println()
+        } while (input != -1)
+        logger.info { "Shutting Down Placemark Console App" }
+    }
+
+    fun menu() :Int { return recipeView.menu() }
+
+    fun add(){
+        var aRecipe = RecipeModel()
+
+        if (recipeView.addRecipeData(aRecipe))
+            recipes.create(aRecipe)
+        else
+            logger.info("Placemark Not Added")
+    }
+
+    fun list() {
+        recipeView.listRecipes(recipes)
+    }
+
+    fun update() {
+
+        recipeView.listRecipes(recipes)
+        var searchId = recipeView.getId()
+        val aRecipe = search(searchId)
+
+        if(aRecipe != null) {
+            if(recipeView.updateRecipeData(aRecipe)) {
+                recipes.update(aRecipe)
+                recipeView.showRecipe(aRecipe)
+                logger.info("Recipe Updated : [ $aRecipe ]")
+            }
+            else
+                logger.info("Recipe Not Updated")
+        }
+        else
+            println("Recipe Not Updated...")
+    }
+
+    fun delete() {
+        recipeView.listRecipes(recipes)
+        var searchId = recipeView.getId()
+        val aRecipe = search(searchId)
+
+        if(aRecipe != null) {
+            recipes.delete(aRecipe)
+            println("Placemark Deleted...")
+            recipeView.listRecipes(recipes)
+        }
+        else
+            println("Placemark Not Deleted...")
+    }
+
+    fun search() {
+        val aRecipe = search(recipeView.getId())!!
+        recipeView.showRecipe(aRecipe)
+    }
+
+
+    fun search(id: Long) : RecipeModel? {
+        var foundRecipe = recipes.findOne(id)
+        return foundRecipe
+    }
+
+    fun dummyData() {
+        recipes.create(RecipeModel(title = "New York New York", description = "So Good They Named It Twice"))
+        recipes.create(RecipeModel(title= "Ring of Kerry", description = "Some place in the Kingdom"))
+        recipes.create(RecipeModel(title = "Waterford City", description = "You get great Blaas Here!!"))
+    }
+}
