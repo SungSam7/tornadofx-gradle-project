@@ -4,16 +4,13 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
-import org.wit.ansibin.console.models.RecipeModel
-import org.wit.ansibin.console.models.RecipeStore
-
-import org.wit.ansibin.console.helpers.*
+import org.wit.ansibin.console.helpers.exists
+import org.wit.ansibin.console.helpers.read
 import org.wit.ansibin.console.helpers.write
-
 
 import java.util.*
 
-
+private val logger = KotlinLogging.logger {}
 
 val JSON_FILE = "recipes.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
@@ -37,7 +34,7 @@ class RecipeJSONStore : RecipeStore {
         return recipes
     }
 
-    override fun findOne(id: Long): RecipeModel? {
+    override fun findOne(id: Long) : RecipeModel? {
         var foundRecipe: RecipeModel? = recipes.find { p -> p.id == id }
         return foundRecipe
     }
@@ -76,5 +73,4 @@ class RecipeJSONStore : RecipeStore {
         recipes = Gson().fromJson(jsonString, listType)
     }
 }
-
 

@@ -3,35 +3,38 @@ package org.wit.ansibin.console.views
 import javafx.application.Platform
 import javafx.geometry.Orientation
 import org.wit.ansibin.console.controllers.AnSibinUIController
+import org.wit.ansibin.console.main.Styles
 import tornadofx.*
 
-class MenuScreen : View("An Sibin Main Menu") {
+class MenuScreen : View("Recipes Main Menu") {
 
-    val ansibinUIController: AnSibinUIController by inject()
-
+    val anSibinUIController: AnSibinUIController by inject()
 
     override val root = form {
         setPrefSize(400.0, 200.0)
+        background{
+            addClass(Styles.heading)
+        }
         fieldset(labelPosition = Orientation.VERTICAL) {
             text("")
-            button("Add Placemark") {
+            button("Add Recipes") {
 
                 isDefaultButton = true
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        ansibinUIController.loadAddScreen()
+                        anSibinUIController.loadAddScreen()
                     }
                 }
             }
             text("")
-            button("List Placemarks") {
+            button("List Recipes") {
 
                 isDefaultButton = true
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        ansibinUIController.loadListScreen()
+                        anSibinUIController.loadListScreen()
                     }
                 }
             }

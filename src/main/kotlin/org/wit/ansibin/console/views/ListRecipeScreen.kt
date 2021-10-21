@@ -1,13 +1,15 @@
 package org.wit.ansibin.console.views
 
+
 import org.wit.ansibin.console.controllers.AnSibinUIController
 import org.wit.ansibin.console.models.RecipeModel
 import tornadofx.*
 
-class ListRecipeScreen : View("My View") {
-    val ansibinUIController: AnSibinUIController by inject()
-    val tableContent = ansibinUIController.recipes.findAll()
-    val data = tableContent.asObservable()
+class ListRecipeScreen : View("List Recipes") {
+
+    val anSibinUIController: AnSibinUIController by inject()
+    val tableContent = anSibinUIController.recipes.findAll()
+    val data = tableContent.observable()
 
 
     override val root = vbox {
@@ -21,7 +23,7 @@ class ListRecipeScreen : View("My View") {
             useMaxWidth = true
             action {
                 runAsyncWithProgress {
-                    ansibinUIController.closeList()
+                    anSibinUIController.closeList()
                 }
             }
         }
