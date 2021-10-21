@@ -37,3 +37,91 @@ class RecipeView {
 
 
 }
+
+//package org.wit.ansibin.console.views
+//
+//import org.wit.ansibin.console.models.RecipeJSONStore
+//import org.wit.ansibin.console.models.RecipeModel
+//
+//class RecipeView {
+//
+//    fun menu() : Int {
+//
+//        var option : Int
+//        var input: String?
+//
+//        println("MAIN MENU")
+//        println(" 1. Add Recipe")
+//        println(" 2. Update Recipe")
+//        println(" 3. List All Recipes")
+//        println(" 4. Search Recipes")
+//        println(" 5. Delete Recipe")
+//        println("-1. Exit")
+//        println()
+//        print("Enter Option : ")
+//        input = readLine()!!
+//        option = if (input.toIntOrNull() != null && !input.isEmpty())
+//            input.toInt()
+//        else
+//            -9
+//        return option
+//    }
+//
+//    fun listRecipes(recipes : RecipeJSONStore) {
+//        println("List All Recipes")
+//        println()
+//        recipes.logAll()
+//        println()
+//    }
+//
+//    fun showRecipe(recipe : RecipeModel) {
+//        if(recipe != null)
+//            println("Recipe Details [ $recipe ]")
+//        else
+//            println("Recipe Not Found...")
+//    }
+//
+//    fun addRecipeData(recipe : RecipeModel) : Boolean {
+//
+//        println()
+//        print("Enter a Title : ")
+//        recipe.title = readLine()!!
+//        print("Enter a Description : ")
+//        recipe.description = readLine()!!
+//
+//        return recipe.title.isNotEmpty() && recipe.description.isNotEmpty()
+//    }
+//
+//    fun updateRecipeData(recipe : RecipeModel) : Boolean {
+//
+//        var tempTitle: String?
+//        var tempDescription: String?
+//
+//        if (recipe != null) {
+//            print("Enter a new Title for [ " + recipe.title + " ] : ")
+//            tempTitle = readLine()!!
+//            print("Enter a new Description for [ " + recipe.description + " ] : ")
+//            tempDescription = readLine()!!
+//
+//            if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {
+//                recipe.title = tempTitle
+//                recipe.description = tempDescription
+//                return true
+//            }
+//        }
+//        return false
+//        }
+//
+//        fun getId() : Long {
+//            var strId : String? // String to hold user input
+//            var searchId : Long // Long to hold converted id
+//            print("Enter id to Search/Update/Delete : ")
+//            strId = readLine()!!
+//            searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
+//                strId.toLong()
+//            else
+//                -9
+//
+//            return searchId
+//        }
+//    }

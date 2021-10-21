@@ -1,10 +1,8 @@
 package org.wit.ansibin.console.models
 
 import mu.KotlinLogging
-import org.wit.ansibin.console.models.RecipeModel
-import org.wit.ansibin.console.models.RecipeStore
 
-
+private val logger = KotlinLogging.logger {}
 
 var lastId = 0L
 
@@ -21,8 +19,8 @@ class RecipeMemStore : RecipeStore {
     }
 
     override fun findOne(id: Long) : RecipeModel? {
-        var foundRecipes: RecipeModel? = recipes.find { p -> p.id == id }
-        return foundRecipes
+        var foundRecipe: RecipeModel? = recipes.find { p -> p.id == id }
+        return foundRecipe
     }
 
     override fun create(recipe: RecipeModel) {
@@ -32,10 +30,10 @@ class RecipeMemStore : RecipeStore {
     }
 
     override fun update(recipe: RecipeModel) {
-        var foundRecipe = findOne(recipe.id!!)
-        if (foundRecipe != null) {
-            foundRecipe.title = recipe.title
-            foundRecipe.description = recipe.description
+        var foundRecipes = findOne(recipe.id!!)
+        if (foundRecipes != null) {
+            foundRecipes.title = recipe.title
+            foundRecipes.description = recipe.description
         }
     }
 
@@ -44,6 +42,6 @@ class RecipeMemStore : RecipeStore {
     }
 
     internal fun logAll() {
-       recipes.forEach { println("${it}") }
+        recipes.forEach { logger.info("${it}") }
     }
 }

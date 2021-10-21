@@ -6,8 +6,6 @@ import org.wit.ansibin.console.models.RecipeModel
 import org.wit.ansibin.console.views.AddRecipeScreen
 import org.wit.ansibin.console.views.ListRecipeScreen
 import org.wit.ansibin.console.views.MenuScreen
-
-
 import tornadofx.*
 
 class AnSibinUIController : Controller() {
@@ -16,13 +14,13 @@ class AnSibinUIController : Controller() {
     val logger = KotlinLogging.logger {}
 
     init {
-        logger.info { "Launching Placemark TornadoFX UI App" }
+        logger.info { "Launching Recipe TornadoFX UI App" }
     }
     fun add(_title : String, _description : String){
 
         var aRecipe = RecipeModel(title = _title, description = _description)
         recipes.create(aRecipe)
-        logger.info("Placemark Added")
+        println("Recipe Added")
     }
 
     fun loadListScreen() {
