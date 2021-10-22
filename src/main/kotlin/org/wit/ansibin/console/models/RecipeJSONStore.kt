@@ -16,9 +16,7 @@ val JSON_FILE = "recipes.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<RecipeModel>>() {}.type
 
-fun generateRandomId(): Long {
-    return Random().nextLong()
-}
+
 
 class RecipeJSONStore : RecipeStore {
 
@@ -40,7 +38,8 @@ class RecipeJSONStore : RecipeStore {
     }
 
     override fun create(recipe: RecipeModel) {
-        recipe.id = generateRandomId()
+        var id = 0L
+        recipe.id = id++
         recipes.add(recipe)
         serialize()
     }

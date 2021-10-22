@@ -1,23 +1,32 @@
 package org.wit.ansibin.console.main
 
-import tornadofx.Stylesheet
+import javafx.scene.paint.Color
+import tornadofx.*
+import tornadofx.Stylesheet.Companion.box
+import tornadofx.Stylesheet.Companion.button
 import tornadofx.Stylesheet.Companion.label
-import tornadofx.cssclass
 import javax.swing.text.html.StyleSheet
 
 class Styles : Stylesheet() {
+    companion object {
+        val leftBox by cssclass()
+        val rightBox by cssclass()
 
-    companion object{
-        val heading by cssclass()
+        val dangerColor = c("#a94442")
+        val hoverColor = c("#d49942")
     }
 
-     init{
-         label and heading
-         {
+    init {
+        root {
+            backgroundColor += Color.DARKBLUE
+            button {
+                backgroundColor += Color.ANTIQUEWHITE
 
-         }
 
-
-     }
+                and(hover) {
+                    backgroundColor += hoverColor
+                }
+            }
+        }
+    }
 }
-

@@ -2,6 +2,7 @@ package org.wit.ansibin.console.views
 
 import javafx.application.Platform
 import javafx.geometry.Orientation
+import javafx.geometry.Pos
 import org.wit.ansibin.console.controllers.AnSibinUIController
 import org.wit.ansibin.console.main.Styles
 import tornadofx.*
@@ -11,16 +12,16 @@ class MenuScreen : View("Recipes Main Menu") {
     val anSibinUIController: AnSibinUIController by inject()
 
     override val root = form {
-        setPrefSize(400.0, 200.0)
-        background{
-            addClass(Styles.heading)
-        }
+        setPrefSize(800.0, 400.0)
+
         fieldset(labelPosition = Orientation.VERTICAL) {
             text("")
             button("Add Recipes") {
-
+                style {
+                    alignment = Pos.TOP_LEFT
+                }
                 isDefaultButton = true
-                useMaxWidth = true
+
                 action {
                     runAsyncWithProgress {
                         anSibinUIController.loadAddScreen()
@@ -29,9 +30,12 @@ class MenuScreen : View("Recipes Main Menu") {
             }
             text("")
             button("List Recipes") {
+                style {
+                    alignment = Pos.TOP_RIGHT
+                }
 
                 isDefaultButton = true
-                useMaxWidth = true
+
                 action {
                     runAsyncWithProgress {
                         anSibinUIController.loadListScreen()
@@ -39,20 +43,31 @@ class MenuScreen : View("Recipes Main Menu") {
                 }
             }
             text("")
-            button("Exit") {
+            button("Add Date") {
 
                 isDefaultButton = true
-                useMaxWidth = true
+
                 action {
                     runAsyncWithProgress {
-                        Platform.exit();
-                        System.exit(0);
+                        anSibinUIController.loadAddDateScreen()
+                    }
+                }
+                text("")
+                button("Exit") {
+
+
+                    useMaxWidth = true
+                    action {
+                        runAsyncWithProgress {
+                            Platform.exit();
+                            System.exit(0);
+                        }
                     }
                 }
             }
+
         }
 
+
     }
-
-
 }

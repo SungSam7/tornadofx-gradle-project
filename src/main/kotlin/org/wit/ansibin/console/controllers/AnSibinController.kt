@@ -4,10 +4,12 @@ import mu.KotlinLogging
 import org.wit.ansibin.console.models.RecipeJSONStore
 import org.wit.ansibin.console.models.RecipeModel
 import org.wit.ansibin.console.views.RecipeView
+import org.wit.ansibin.console.models.Recommended
 
 class AnSibinController {
 
     // val recipes = PlacemarkMemStore()
+    val recomended = Recommended()
     val recipes = RecipeJSONStore()
     val recipeView = RecipeView()
     val logger = KotlinLogging.logger {}
@@ -29,7 +31,8 @@ class AnSibinController {
                 3 -> list()
                 4 -> search()
                 5 -> delete()
-                -99 -> dummyData()
+                6 -> searchRecommended()
+
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
             }
@@ -97,9 +100,7 @@ class AnSibinController {
         return foundRecipe
     }
 
-    fun dummyData() {
-        recipes.create(RecipeModel(title = "New York New York", description = "So Good They Named It Twice"))
-        recipes.create(RecipeModel(title= "Ring of Kerry", description = "Some place in the Kingdom"))
-        recipes.create(RecipeModel(title = "Waterford City", description = "You get great Blaas Here!!"))
-    }
+   fun searchRecommended(){
+
+   }
 }
