@@ -7,17 +7,19 @@ import tornadofx.*
 
 class ListRecipeScreen : View("List Recipes") {
 
+
     val anSibinUIController: AnSibinUIController by inject()
     val tableContent = anSibinUIController.recipes.findAll()
     val data = tableContent.observable()
 
 
     override val root = vbox {
+
         setPrefSize(600.0, 200.0)
         tableview(data) {
-            readonlyColumn("ID", RecipeModel::id)
-            readonlyColumn("TITLE", RecipeModel::title)
-            readonlyColumn("DESCRIPTION", RecipeModel::description)
+            column("ID", RecipeModel::id)
+            column("Title", RecipeModel::title)
+            readonlyColumn("Cuisine", RecipeModel::description)
         }
         button("Close") {
             useMaxWidth = true

@@ -20,6 +20,8 @@ fun generateRandomId(): Long {
     return Random().nextLong()
 }
 
+
+
 class RecipeJSONStore : RecipeStore {
 
     var recipes = mutableListOf<RecipeModel>()
@@ -40,6 +42,8 @@ class RecipeJSONStore : RecipeStore {
     }
 
     override fun create(recipe: RecipeModel) {
+        //var id = 1L
+        //recipe.id = id++
         recipe.id = generateRandomId()
         recipes.add(recipe)
         serialize()

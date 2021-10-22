@@ -2,7 +2,7 @@ package org.wit.ansibin.console.models
 
 import mu.KotlinLogging
 
-private val logger = KotlinLogging.logger {}
+
 
 var lastId = 0L
 
@@ -42,6 +42,6 @@ class RecipeMemStore : RecipeStore {
     }
 
     internal fun logAll() {
-        recipes.forEach { logger.info("${it}") }
+        recipes.forEach { ("${it}") }
     }
 }
