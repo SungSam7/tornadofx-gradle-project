@@ -56,7 +56,7 @@ class AnSibinController {
         if (recipeView.addRecipeData(aRecipe))
             recipes.create(aRecipe)
         else
-            logger.info("Placemark Not Added")
+            logger.info("Recipe Not Added")
     }
 
     fun list() {
@@ -89,11 +89,11 @@ class AnSibinController {
 
         if(aRecipe != null) {
             recipes.delete(aRecipe)
-            println("Placemark Deleted...")
+            println("Recipe Deleted...")
             recipeView.listRecipes(recipes)
         }
         else
-            println("Placemark Not Deleted...")
+            println("Recipe Not Deleted...")
     }
 
     fun search() {

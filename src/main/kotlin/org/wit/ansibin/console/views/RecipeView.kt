@@ -89,7 +89,7 @@ class RecipeView {
         println()
         print("Enter a Title : ")
         recipe.title = readLine()!!
-        print("Enter a Description : ")
+        print("Enter a Cuisine : ")
         recipe.description = readLine()!!
 
         return recipe.title.isNotEmpty() && recipe.description.isNotEmpty()
