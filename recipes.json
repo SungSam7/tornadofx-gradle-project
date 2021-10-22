@@ -1,8 +1,8 @@
 [
   {
-    "id": 0,
-    "title": "StringProperty [bean: tornadofx.ViewModel@56900ba0, value: Chicken Fajitas]",
-    "description": "StringProperty [bean: tornadofx.ViewModel@56900ba0, value: Cuisine from Mexico]"
+    "id": -8828593058512010632,
+    "title": "Chicken Curry",
+    "description": "Chinese"
   },
   {
     "id": 0,
@@ -18,5 +18,15 @@
     "id": 0,
     "title": "StringProperty [bean: tornadofx.ViewModel@b0863fa, value: ewffwefwe]",
     "description": "StringProperty [bean: tornadofx.ViewModel@b0863fa, value: wefwefwef]"
+  },
+  {
+    "id": 1780804140840168244,
+    "title": "Rice Krispies",
+    "description": "A bowl of blandness"
+  },
+  {
+    "id": -5669980383687790521,
+    "title": "Rice Krispies",
+    "description": "A bowl of blandness"
   }
 ]

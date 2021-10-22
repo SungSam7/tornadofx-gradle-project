@@ -8,8 +8,13 @@ class Recommended{
         {
             return println("chicken soup").toString()
         }
+        else if (protein == "beef")
+        {
+            return println("Beef Lasagne").toString()
+        }
         else
             return println("please enter a valid protein").toString()
     }
+
 
 }

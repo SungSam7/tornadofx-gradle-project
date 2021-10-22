@@ -3,6 +3,7 @@ package org.wit.ansibin.console.controllers
 import mu.KotlinLogging
 import org.wit.ansibin.console.models.RecipeJSONStore
 import org.wit.ansibin.console.models.RecipeModel
+import org.wit.ansibin.console.views.AddDateScreen
 //import org.wit.ansibin.console.views.AddDateScreen
 import org.wit.ansibin.console.views.AddRecipeScreen
 import org.wit.ansibin.console.views.ListRecipeScreen
@@ -12,11 +13,9 @@ import tornadofx.*
 class AnSibinUIController : Controller() {
 
     val recipes = RecipeJSONStore()
-    val logger = KotlinLogging.logger {}
 
-    init {
-        logger.info { "Launching Recipe TornadoFX UI App" }
-    }
+
+
     fun add(_title : String, _description : String){
 
         var aRecipe = RecipeModel(title = _title, description = _description)
@@ -51,7 +50,7 @@ class AnSibinUIController : Controller() {
     fun loadAddDateScreen()
     {
         runLater {
-           // find(MenuScreen::class).replaceWith(AddDateScreen::class, sizeToScene = true, centerOnScreen = true)
+           find(MenuScreen::class).replaceWith(AddDateScreen::class, sizeToScene = true, centerOnScreen = true)
         }
     }
 

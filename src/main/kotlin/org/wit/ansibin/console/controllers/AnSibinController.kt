@@ -5,19 +5,24 @@ import org.wit.ansibin.console.models.RecipeJSONStore
 import org.wit.ansibin.console.models.RecipeModel
 import org.wit.ansibin.console.views.RecipeView
 import org.wit.ansibin.console.models.Recommended
+import org.wit.ansibin.console.models.Dates
+import org.wit.ansibin.console.models.AnSibinLocation
 
 class AnSibinController {
 
     // val recipes = PlacemarkMemStore()
     val recomended = Recommended()
     val recipes = RecipeJSONStore()
+    val dates = Dates()
     val recipeView = RecipeView()
+    val ansibinLocation = AnSibinLocation()
     val logger = KotlinLogging.logger {}
+    var input: String = ""
 
     init {
         logger.info { "Preparing to Launch An-Sibin App" }
         logger.info { "Launch Successful" }
-        println("Placemark Kotlin App Version 4.0")
+        println("Recipes Kotlin App Version 6.0")
     }
 
     fun start() {
@@ -32,13 +37,15 @@ class AnSibinController {
                 4 -> search()
                 5 -> delete()
                 6 -> searchRecommended()
+                7 -> returnDates()
+                8 -> location()
 
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
             }
             println()
         } while (input != -1)
-        logger.info { "Shutting Down Placemark Console App" }
+        logger.info { "Shutting Down An Sibin  App" }
     }
 
     fun menu() :Int { return recipeView.menu() }
@@ -101,6 +108,34 @@ class AnSibinController {
     }
 
    fun searchRecommended(){
+    var protein: String  = ""
+       var exit: String = ""
 
+       while (exit!="q") {
+           print("Enter a protein you would like to search: ")
+           protein = readLine()!!.toLowerCase()
+           recomended.recommended(protein)
+
+           print("Press any key to search another protein recipe or 'q' to quit: ")
+           exit = readLine()!!.toLowerCase()
+       }
    }
+
+    fun location()
+    {
+
+        ansibinLocation.location()
+        println()
+        print("Press Enter to return to main menu: ")
+        input = readLine()!!
+    }
+
+    fun returnDates()
+    {
+
+        dates.returnDates()
+        print("Press Enter to return to main menu: ")
+        input = readLine()!!
+    }
+
 }

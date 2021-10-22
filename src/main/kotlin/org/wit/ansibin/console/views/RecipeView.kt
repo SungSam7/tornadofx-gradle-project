@@ -56,6 +56,9 @@ class RecipeView {
         println(" 3. List All Recipes")
         println(" 4. Search Recipes")
         println(" 5. Delete Recipe")
+        println(" 6. See our recommended recipes using a choice of your proteins")
+        println(" 7. View our Available dates")
+        println(" 8. Where you can find us")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -100,7 +103,7 @@ class RecipeView {
         if (recipe != null) {
             print("Enter a new Title for [ " + recipe.title + " ] : ")
             tempTitle = readLine()!!
-            print("Enter a new Description for [ " + recipe.description + " ] : ")
+            print("Enter a new Cuisine for [ " + recipe.description + " ] : ")
             tempDescription = readLine()!!
 
             if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {

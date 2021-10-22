@@ -18,8 +18,8 @@ class ListRecipeScreen : View("List Recipes") {
         setPrefSize(600.0, 200.0)
         tableview(data) {
             column("ID", RecipeModel::id)
-            column("TITLE", RecipeModel::title)
-            readonlyColumn("DESCRIPTION", RecipeModel::description)
+            column("Title", RecipeModel::title)
+            readonlyColumn("Cuisine", RecipeModel::description)
         }
         button("Close") {
             useMaxWidth = true
